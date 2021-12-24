@@ -2,13 +2,14 @@ package HRISproject.HRISproject.dao;
 
 
 import HRISproject.HRISproject.entity.Bank;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-
+@Repository
 public class BankDAO extends BaseDAO<Bank> {
 
     @Override

@@ -1,12 +1,14 @@
 package HRISproject.HRISproject.dao;
 
 import HRISproject.HRISproject.entity.Division;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+@Repository
 public class DivisionDAO extends BaseDAO<Division> {
 
     @Override
