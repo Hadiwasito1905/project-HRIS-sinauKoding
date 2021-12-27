@@ -29,8 +29,8 @@ public class Attendance extends BaseEntity<Attendance> {
     @Column(name = "note", columnDefinition = "TEXT")
     private String note;
 
-    @Column(name = "project_name")
-    private String projectName;
+//    @Column(name = "project_name")
+//    private String projectName;
 
     @Column(name = "rest_start_time")
     @Temporal(TemporalType.TIME)
