@@ -48,23 +48,30 @@ public abstract class BaseEntity<T> implements Serializable {
     @Column(name = "updated_by", columnDefinition = "VARCHAR(100)")
     private String updatedBy;
 
+    @Column(name = "name", columnDefinition = "VARCHAR(100)")
+    private String name;
+
+    @Column(name = "note", columnDefinition = "VARCHAR(100)")
+    private String note;
+
+    @Column(name = "phone", columnDefinition = "VARCHAR(255)")
+    private String phone;
+
     @PrePersist
-    protected void onCreate(){
+    protected void onCreate() {
         setCreatedTime(new Date());
     }
 
     @PreRemove
-    protected void onRemove(){
+    protected void onRemove() {
         setDeleted(Boolean.TRUE);
         setDeletedTime(new Date());
     }
 
     @PreUpdate
-    protected void onUpdate(){
+    protected void onUpdate() {
         setUpdatedTime(new Date());
     }
 
-
-
-
 }
+

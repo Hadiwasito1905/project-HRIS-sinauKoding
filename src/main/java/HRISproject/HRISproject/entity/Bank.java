@@ -17,9 +17,13 @@ import javax.persistence.Table;
 
 public class Bank extends BaseEntity<Bank> {
 
+
+    private static final long serialVersionUID = 3392436355282797227L;
+
+
     @Column(name = "name", columnDefinition = "VARCHAR(40)")
     private String name;
 
     @Column(name = "code", columnDefinition = "VARCHAR(10)")
-    private String note;
+    private String code;
 }

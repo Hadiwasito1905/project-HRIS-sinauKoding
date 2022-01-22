@@ -25,11 +25,12 @@ public abstract class BaseDAO<T extends BaseEntity<T>> {
     protected EntityManager entityManager;
 
     private Class<T> type;
+
     {
-        this.type = (Class<T>)((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        this.type = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
-    public T findOne(T param){
+    public T findOne(T param) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 
         CriteriaQuery<T> query = builder.createQuery(type);
@@ -41,7 +42,7 @@ public abstract class BaseDAO<T extends BaseEntity<T>> {
         return singleResult(query, predicates(param, builder, root, false));
     }
 
-    public Collection<T> find(T param, int offset, int limit){
+    public Collection<T> find(T param, int offset, int limit) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 
         CriteriaQuery<T> query = builder.createQuery(type);
@@ -53,8 +54,7 @@ public abstract class BaseDAO<T extends BaseEntity<T>> {
         return listResult(query, predicates(param, builder, root, false), offset, limit);
     }
 
-
-    public Long count(T param){
+    public Long count(T param) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 
         CriteriaQuery<Long> query = builder.createQuery(Long.class);
@@ -66,9 +66,8 @@ public abstract class BaseDAO<T extends BaseEntity<T>> {
         return singleResult(query, predicates(param, builder, root, true));
     }
 
-
-    public T save(T entity){
-        if (entity != null && entity.getId() == null){
+    public T save(T entity) {
+        if (entity != null && entity.getId() == null) {
             entityManager.persist(entity);
 
             return entity;
@@ -77,39 +76,41 @@ public abstract class BaseDAO<T extends BaseEntity<T>> {
         return entity;
     }
 
-    public T update(T entity){
-        if (entity != null && entity.getId() != null){
+    public T update(T entity) {
+        if (entity != null && entity.getId() != null) {
             T reference = findReference(entity.getId());
 
             entity.setCreatedTime(reference.getCreatedTime());
 
-            if (reference != null){
+            if (reference != null) {
                 entityManager.merge(entity);
 
                 return entity;
             }
         }
+
         return entity;
     }
 
-    public T delete(T entity){
-        if (entity != null && entity.getId() != null){
+    public  T delete(T entity) {
+        if (entity != null && entity.getId() != null) {
             T reference = findReference(entity.getId());
 
-            if (reference != null){
+            if (reference != null) {
                 entityManager.remove(entity);
 
                 return entity;
             }
         }
+
         return entity;
     }
 
-    public T findReference(Long id){
+    public T findReference(Long id) {
         return (T) Hibernate.unproxy(entityManager.getReference(type, id));
     }
 
-    public List<Predicate> predicates(T param, CriteriaBuilder builder, Root<T> root, boolean isCount){
+    public List<Predicate> predicates(T param, CriteriaBuilder builder, Root<T> root, boolean isCount) {
         return new ArrayList<>();
     }
 
@@ -121,9 +122,9 @@ public abstract class BaseDAO<T extends BaseEntity<T>> {
         } catch (NoResultException ignore) {
 
         }
+
         return null;
     }
-
 
     public List<T> listResult(CriteriaQuery<T> query, List<Predicate> predicates, int offset, int limit) {
         query.where(predicates.toArray(new Predicate[0]));
@@ -131,10 +132,11 @@ public abstract class BaseDAO<T extends BaseEntity<T>> {
 
         TypedQuery<T> typedQuery = entityManager.createQuery(query);
 
-        if (limit != Integer.MAX_VALUE) {
+        if(limit != Integer.MAX_VALUE) {
             typedQuery.setMaxResults(limit);
         }
 
         return typedQuery.setFirstResult(offset).getResultList();
     }
+
 }

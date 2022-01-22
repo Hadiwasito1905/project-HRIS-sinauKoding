@@ -14,6 +14,10 @@ import java.util.Date;
 @NoArgsConstructor
 public class Attendance extends BaseEntity<Attendance> {
 
+
+    private static final long serialVersionUID = -8207231947953017914L;
+
+
     @Column(name = "date")
     @Temporal(TemporalType.DATE)
     private Date date;
@@ -28,9 +32,6 @@ public class Attendance extends BaseEntity<Attendance> {
 
     @Column(name = "note", columnDefinition = "TEXT")
     private String note;
-
-//    @Column(name = "project_name")
-//    private String projectName;
 
     @Column(name = "rest_start_time")
     @Temporal(TemporalType.TIME)

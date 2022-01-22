@@ -80,9 +80,6 @@ public class User extends BaseEntity<User> {
     @Column(name = "nama_ibu", columnDefinition = "VARCHAR(255)")
     private String namaIbu;
 
-    @Column(name = "phone", columnDefinition = "VARCHAR(255)")
-    private String phone;
-
     @Column(name = "token")
     private String token;
 

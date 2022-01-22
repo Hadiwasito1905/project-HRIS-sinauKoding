@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -20,9 +19,4 @@ public class Division extends BaseEntity<Division> {
     private static final long serialVersionUID = 8497514655310258610L;
 
 
-    @Column(name = "name", columnDefinition = "VARCHAR(255)", nullable = false)
-    private String name;
-
-    @Column(name = "note", columnDefinition = "TEXT", nullable = false)
-    private String note;
 }
